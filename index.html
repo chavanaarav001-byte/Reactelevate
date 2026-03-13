@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReactElevate | Premium React Website Development</title>
+<meta name="description" content="Premium React website development — 20+ pages, modern UI, 12-15 day delivery, domain+hosting+SSL included. 24/7 support. Get your dream website today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── VARIABLES ─────────────────────────────────── */
+:root{
+  --bg:       #130c04;
+  --bg2:      #1c1108;
+  --bg3:      #261608;
+  --bg4:      #2f1c0c;
+  --card:     #221408;
+  --border:   rgba(244,169,80,.18);
+  --border2:  rgba(244,169,80,.35);
+  --orange:   #f98d1c;
+  --orange2:  #e07010;
+  --gold:     #FFD966;
+  --gold2:    #f5c030;
+  --amber:    #FFB347;
+  --cream:    #f7e9d7;
+  --muted:    #d4a870;
+  --dim:      #8a6540;
+  --dark:     #120800;
+  --white:    #ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--cream);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ── NOISE TEXTURE OVERLAY ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--orange2);border-radius:3px}
+
+/* ── CUSTOM CURSOR ── */
+*, *::before, *::after{cursor:none}
+#cursor{
+  width:14px;height:14px;
+  background:var(--gold);
+  border-radius:50%;
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9999;
+  transition:transform .15s ease,background .15s;
+  mix-blend-mode:difference;
+}
+#cursor-ring{
+  width:36px;height:36px;
+  border:1.5px solid var(--orange);
+  border-radius:50%;
+  position:fixed;top:0;left:0;
+  pointer-events:none;z-index:9998;
+  transition:all .35s ease;
+  opacity:.7;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 3.5rem;
+  background:rgba(19,12,4,.88);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  display:flex;align-items:center;gap:.7rem;
+  text-decoration:none;
+}
+.logo-crown{
+  width:40px;height:40px;
+  background:linear-gradient(135deg,var(--orange),var(--gold));
+  border-radius:10px;
+  display:grid;place-items:center;
+  font-size:1.25rem;
+  box-shadow:0 0 20px rgba(249,141,28,.4);
+}
+.logo-text{
+  font-family:'Syne',sans-serif;
+  font-size:1.35rem;font-weight:800;
+  background:linear-gradient(120deg,var(--amber),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.nav-links{display:flex;align-items:center;gap:2.2rem}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:.88rem;font-weight:500;
+  transition:.2s;letter-spacing:.3px;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-badge{
+  display:flex;align-items:center;gap:.4rem;
+  background:rgba(249,141,28,.12);
+  border:1px solid rgba(249,141,28,.3);
+  padding:.25rem .7rem;border-radius:20px;
+  font-size:.75rem;color:var(--amber);font-weight:600;
+}
+.nav-badge .live{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.nav-cta{
+  background:linear-gradient(135deg,var(--orange),var(--gold2));
+  color:var(--dark);font-weight:700;font-size:.85rem;
+  padding:.55rem 1.4rem;border-radius:6px;text-decoration:none;
+  box-shadow:0 0 24px rgba(249,141,28,.35);
+  transition:.2s;letter-spacing:.3px;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(249,141,28,.55)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;padding:8rem 3.5rem 5rem;
+  overflow:hidden;
+}
+.hero-bg-orb{
+  position:absolute;pointer-events:none;border-radius:50%;
+  filter:blur(80px);
+}
+.orb1{width:700px;height:700px;background:radial-gradient(circle,rgba(249,141,28,.2) 0%,transparent 70%);top:-15%;left:-10%}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,185,71,.12) 0%,transparent 70%);bottom:5%;right:-5%}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,217,102,.08) 0%,transparent 70%);top:30%;left:40%}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:rgba(255,179,71,.08);
+  border:1px solid rgba(255,179,71,.25);
+  padding:.4rem 1.1rem;border-radius:40px;
+  font-size:.78rem;color:var(--amber);font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:2rem;
+  animation:fadeUp .6s ease both;
+}
+.hero-eyebrow .spark{animation:spark 2s infinite}
+@keyframes spark{0%,100%{transform:rotate(0)}50%{transform:rotate(20deg)}}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(4rem,9vw,8.5rem);
+  font-weight:800;line-height:.92;
+  text-transform:uppercase;
+  letter-spacing:-2px;
+  max-width:900px;
+  animation:fadeUp .7s .1s ease both;
+}
+.h1-line1{color:var(--cream)}
+.h1-line2{
+  background:linear-gradient(90deg,var(--orange) 0%,var(--gold) 50%,var(--amber) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  position:relative;display:inline-block;
+}
+.h1-line2::after{
+  content:'';position:absolute;bottom:4px;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+  border-radius:2px;opacity:.5;
+}
+.h1-line3{color:var(--cream);opacity:.35}
+
+.hero-sub{
+  font-size:1.15rem;color:var(--muted);
+  max-width:540px;margin:2rem 0 2.8rem;
+  font-weight:400;animation:fadeUp .7s .2s ease both;
+}
+
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .3s ease both}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:linear-gradient(135deg,var(--orange),var(--gold2));
+  color:var(--dark);padding:.9rem 2.2rem;border-radius:8px;
+  font-weight:700;font-size:1rem;text-decoration:none;
+  box-shadow:0 6px 0 #7b3b06, 0 12px 30px rgba(249,141,28,.4);
+  transition:.15s;border:1px solid rgba(255,210,100,.3);
+}
+.btn-hero:hover{transform:translateY(-3px);box-shadow:0 9px 0 #7b3b06,0 20px 40px rgba(249,141,28,.55)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.55rem;
+  border:1px solid var(--border2);color:var(--amber);
+  padding:.9rem 2.2rem;border-radius:8px;font-weight:600;
+  font-size:1rem;text-decoration:none;transition:.2s;
+}
+.btn-ghost:hover{background:rgba(255,179,71,.08);border-color:var(--amber)}
+
+/* stats ticker */
+.hero-stats{
+  display:flex;gap:0;
+  margin-top:4rem;
+  border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.02);
+  max-width:620px;
+  animation:fadeUp .7s .4s ease both;
+}
+.stat-box{
+  flex:1;padding:1.2rem;
+  border-right:1px solid var(--border);
+  text-align:center;
+}
+.stat-box:last-child{border-right:none}
+.stat-n{
+  font-family:'Syne',sans-serif;
+  font-size:2.4rem;font-weight:800;
+  background:linear-gradient(135deg,var(--gold),var(--amber));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1;
+}
+.stat-l{font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-top:.3rem}
+
+/* floating right card */
+.hero-float-card{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  background:var(--card);
+  border:1px solid var(--border2);
+  border-radius:24px;padding:2rem 1.8rem;
+  width:260px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,215,0,.08) inset;
+  animation:floatCard 3.5s ease-in-out infinite;
+}
+@keyframes floatCard{0%,100%{transform:translateY(-50%) translateY(0)}50%{transform:translateY(-50%) translateY(-12px)}}
+.hfc-icon{font-size:2.8rem;text-align:center;margin-bottom:.8rem}
+.hfc-time{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  color:var(--amber);text-align:center;line-height:1.1;
+}
+.hfc-sub{font-size:.8rem;color:var(--muted);text-align:center;margin:.3rem 0 1.2rem}
+.hfc-divider{height:1px;background:var(--border);margin:1rem 0}
+.hfc-row{display:flex;align-items:center;gap:.6rem;margin:.5rem 0;font-size:.85rem;color:var(--cream)}
+.hfc-row .dot{width:8px;height:8px;background:var(--green,#4ade80);border-radius:50%;flex-shrink:0}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TRUST TICKER ── */
+.ticker-wrap{
+  overflow:hidden;
+  background:rgba(255,179,71,.05);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:.7rem 0;
+}
+.ticker{
+  display:flex;gap:3rem;
+  animation:ticker 25s linear infinite;
+  white-space:nowrap;
+}
+.ticker-item{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.8rem;color:var(--muted);font-weight:500;
+  flex-shrink:0;
+}
+.ticker-item .ti{color:var(--amber)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTIONS SHARED ── */
+section{position:relative;z-index:1;padding:6rem 3.5rem}
+.section-label{
+  font-size:.72rem;color:var(--orange);font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.8rem);
+  font-weight:800;text-transform:uppercase;
+  line-height:.95;color:var(--cream);margin-bottom:1rem;
+  letter-spacing:-1px;
+}
+.title-gold{
+  background:linear-gradient(90deg,var(--orange),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.section-sub{font-size:1rem;color:var(--muted);max-width:520px;line-height:1.7}
+
+/* ── WHAT WE OFFER ── */
+.offer{background:var(--bg2)}
+.offer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:1.5rem;margin-top:3.5rem;
+}
+.offer-card{
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:20px;padding:1.8rem;
+  position:relative;overflow:hidden;
+  transition:.25s;
+}
+.offer-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--orange),transparent);
+  opacity:0;transition:.25s;
+}
+.offer-card:hover{border-color:var(--border2);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.offer-card:hover::before{opacity:1}
+.oc-icon{
+  width:54px;height:54px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(249,141,28,.25),rgba(255,185,71,.1));
+  border:1px solid rgba(249,141,28,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;margin-bottom:1.2rem;
+}
+.oc-title{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:.5rem}
+.oc-desc{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* ── FEATURES FULL LIST ── */
+.features{background:var(--bg)}
+.features-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+.feat-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1rem;
+}
+.feat-item{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--bg3);
+  border:1px solid var(--border);
+  border-radius:14px;padding:1.1rem 1.2rem;
+  transition:.2s;
+}
+.feat-item:hover{border-color:var(--border2);background:var(--bg4)}
+.feat-num{
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  color:var(--dim);min-width:24px;
+}
+.feat-icon{
+  width:44px;height:44px;flex-shrink:0;border-radius:10px;
+  background:linear-gradient(135deg,rgba(249,141,28,.3),rgba(255,185,71,.1));
+  display:flex;align-items:center;justify-content:center;font-size:1.35rem;
+}
+.feat-body strong{display:block;font-size:.95rem;color:var(--cream);font-weight:600;margin-bottom:.15rem}
+.feat-body span{font-size:.78rem;color:var(--muted)}
+
+/* ── PROCESS ── */
+.process{background:var(--bg2)}
+.process-steps{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2rem;margin-top:3.5rem;
+  position:relative;
+}
+.process-steps::before{
+  content:'';position:absolute;top:2.5rem;left:16%;right:16%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--orange),var(--gold),var(--orange),transparent);
+  z-index:0;
+}
+.step-card{
+  position:relative;z-index:1;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:20px;padding:2rem 1.5rem;text-align:center;
+  transition:.25s;
+}
+.step-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.step-num{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--gold2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;
+  color:var(--dark);margin:0 auto 1.2rem;
+  box-shadow:0 0 20px rgba(249,141,28,.4);
+}
+.step-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:.5rem}
+.step-desc{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+/* ── INCLUDED ── */
+.included{background:var(--bg)}
+.included-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.inc-card{
+  display:flex;align-items:center;gap:1.2rem;
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:16px;padding:1.4rem 1.6rem;transition:.2s;
+}
+.inc-card:hover{border-color:var(--border2)}
+.inc-icon-wrap{
+  width:52px;height:52px;flex-shrink:0;border-radius:12px;
+  background:linear-gradient(135deg,var(--orange2),var(--orange));
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+  box-shadow:0 5px 0 #5a2e00;
+}
+.inc-body strong{display:block;font-size:1rem;color:var(--cream);font-weight:600;margin-bottom:.2rem}
+.inc-body span{font-size:.82rem;color:var(--muted)}
+.inc-check{margin-left:auto;font-size:1.3rem;flex-shrink:0}
+
+/* ── TIMELINE ── */
+.timeline{background:var(--bg2)}
+.tl-list{margin-top:3rem;position:relative;padding-left:2rem}
+.tl-list::before{
+  content:'';position:absolute;left:.45rem;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--orange),var(--gold),transparent);
+}
+.tl-item{
+  position:relative;margin-bottom:2rem;padding-left:2.5rem;
+}
+.tl-item::before{
+  content:'';position:absolute;left:-1.55rem;top:.4rem;
+  width:14px;height:14px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--gold));
+  box-shadow:0 0 15px rgba(249,141,28,.6);
+}
+.tl-day{
+  display:inline-block;
+  background:rgba(249,141,28,.15);border:1px solid rgba(249,141,28,.3);
+  padding:.15rem .7rem;border-radius:20px;
+  font-size:.72rem;color:var(--amber);font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:.4rem;
+}
+.tl-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:.3rem}
+.tl-desc{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* ── CONNECT / LEAD GEN ── */
+.connect{background:var(--bg)}
+.connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.conn-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:20px;padding:2rem 1.5rem;text-align:center;
+  transition:.25s;
+}
+.conn-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.conn-icon{font-size:2.5rem;margin-bottom:1rem}
+.conn-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:.5rem}
+.conn-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+.conn-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:1.2rem;
+  background:linear-gradient(135deg,var(--orange),var(--gold2));
+  color:var(--dark);font-weight:700;font-size:.82rem;
+  padding:.55rem 1.2rem;border-radius:6px;text-decoration:none;
+  transition:.2s;
+}
+.conn-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* ── WHY US ── */
+.whyus{background:var(--bg2)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:3rem}
+.why-card{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:16px;padding:1.6rem;transition:.2s;
+}
+.why-card:hover{border-color:var(--border2);background:var(--bg4)}
+.why-icon{font-size:2rem;margin-bottom:.8rem}
+.why-title{font-weight:700;color:var(--cream);margin-bottom:.4rem;font-size:.95rem}
+.why-desc{font-size:.83rem;color:var(--muted);line-height:1.65}
+
+/* ── CTA SECTION ── */
+.cta-section{
+  position:relative;overflow:hidden;
+  background:var(--bg);padding:7rem 3.5rem;text-align:center;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(249,141,28,.14) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-section h2{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2.5rem,6vw,5.5rem);font-weight:800;
+  text-transform:uppercase;letter-spacing:-1.5px;
+  line-height:.95;margin-bottom:1.5rem;color:var(--cream);
+}
+.cta-section p{font-size:1.1rem;color:var(--muted);max-width:480px;margin:0 auto 2.5rem}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.cta-contacts{
+  display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;
+  margin-top:3rem;
+}
+.cta-contact-item{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.88rem;color:var(--muted);
+}
+.cta-contact-item .ci{font-size:1.1rem;color:var(--amber)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  padding:3.5rem 3.5rem 1.5rem;
+}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-logo{margin-bottom:1rem}
+.footer-desc{font-size:.85rem;color:var(--muted);line-height:1.7;max-width:280px}
+.footer-col h4{
+  font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;
+  color:var(--amber);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1.2rem;
+}
+.footer-col a{
+  display:block;font-size:.85rem;color:var(--dim);
+  text-decoration:none;margin-bottom:.6rem;transition:.2s;
+}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:1.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;font-size:.78rem;color:var(--dim);
+}
+.footer-socials{display:flex;gap:.8rem}
+.social-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;text-decoration:none;transition:.2s;
+}
+.social-icon:hover{border-color:var(--border2);background:var(--bg4)}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-btn{
+  position:fixed;bottom:2rem;right:2rem;z-index:400;
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;text-decoration:none;
+  box-shadow:0 5px 20px rgba(37,211,102,.45);
+  transition:.2s;
+  animation:waIn .5s 1s ease both;
+}
+.wa-btn:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,.6)}
+@keyframes waIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(30px);transition:.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav{padding:.8rem 1.5rem}
+  .nav-links{display:none}
+  section,.hero,.cta-section{padding:4rem 1.5rem}
+  .hero h1{font-size:3.5rem;letter-spacing:-1px}
+  .hero-float-card{display:none}
+  .hero-stats{max-width:100%}
+  .offer-grid,.feat-grid,.why-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  .included-grid,.connect-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .cta-contacts{flex-direction:column;align-items:center;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-crown">👑</div>
+    <div class="logo-text">ReactElevate</div>
+  </a>
+  <div class="nav-links">
+    <a href="#offer">Services</a>
+    <a href="#features">Features</a>
+    <a href="#process">Process</a>
+    <a href="#included">Pricing</a>
+    <a href="#contact">Contact</a>
+    <div class="nav-badge"><span class="live"></span>24/7 Live</div>
+  </div>
+  <a href="https://wa.me/917000000000" class="nav-cta">💬 WhatsApp Us</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg-orb orb1"></div>
+  <div class="hero-bg-orb orb2"></div>
+  <div class="hero-bg-orb orb3"></div>
+
+  <div class="hero-eyebrow">
+    <span class="spark">⚡</span>
+    Premium React Development · Orange & Gold Edition
+  </div>
+
+  <h1>
+    <div class="h1-line1">High‑Performance</div>
+    <div class="h1-line2">React</div>
+    <div class="h1-line1">Websites</div>
+  </h1>
+
+  <p class="hero-sub">
+    20+ premium pages · stunning UI · fully responsive · 12–15 day delivery.<br>
+    Domain + Hosting + SSL included. 1 year maintenance. Zero hidden costs.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://wa.me/917000000000" class="btn-hero">💬 Chat on WhatsApp</a>
+    <a href="#features" class="btn-ghost">✨ See What's Included</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-box">
+      <div class="stat-n">20+</div>
+      <div class="stat-l">Premium Pages</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">12–15</div>
+      <div class="stat-l">Days Delivery</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">24/7</div>
+      <div class="stat-l">Live Support</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-n">1 yr</div>
+      <div class="stat-l">Free Maintenance</div>
+    </div>
+  </div>
+
+  <!-- floating card -->
+  <div class="hero-float-card">
+    <div class="hfc-icon">💎</div>
+    <div class="hfc-time">12–15 Days</div>
+    <div class="hfc-sub">Fast delivery · Fully optimised</div>
+    <div class="hfc-divider"></div>
+    <div class="hfc-row"><div class="dot" style="background:#4ade80"></div>SSL Certificate — Free</div>
+    <div class="hfc-row"><div class="dot" style="background:#4ade80"></div>Domain (1 Year) — Free</div>
+    <div class="hfc-row"><div class="dot" style="background:#4ade80"></div>Hosting (1 Year) — Free</div>
+    <div class="hfc-row"><div class="dot" style="background:#4ade80"></div>Maintenance (1 Yr) — Free</div>
+    <div class="hfc-row"><div class="dot" style="background:#4ade80"></div>24×7 Support — Always</div>
+  </div>
+</section>
+
+<!-- ── TRUST TICKER ── -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti">👑</span> ReactElevate</div>
+    <div class="ticker-item"><span class="ti">⚡</span> 12-15 Day Delivery</div>
+    <div class="ticker-item"><span class="ti">🛡️</span> SSL + Domain + Hosting</div>
+    <div class="ticker-item"><span class="ti">🎧</span> 24×7 Support</div>
+    <div class="ticker-item"><span class="ti">🚀</span> React Powered</div>
+    <div class="ticker-item"><span class="ti">📱</span> Fully Responsive</div>
+    <div class="ticker-item"><span class="ti">🔍</span> SEO Optimised</div>
+    <div class="ticker-item"><span class="ti">📊</span> Google Analytics</div>
+    <div class="ticker-item"><span class="ti">💬</span> WhatsApp Chat</div>
+    <div class="ticker-item"><span class="ti">🔧</span> 1 Year Maintenance</div>
+    <!-- duplicate for infinite loop -->
+    <div class="ticker-item"><span class="ti">👑</span> ReactElevate</div>
+    <div class="ticker-item"><span class="ti">⚡</span> 12-15 Day Delivery</div>
+    <div class="ticker-item"><span class="ti">🛡️</span> SSL + Domain + Hosting</div>
+    <div class="ticker-item"><span class="ti">🎧</span> 24×7 Support</div>
+    <div class="ticker-item"><span class="ti">🚀</span> React Powered</div>
+    <div class="ticker-item"><span class="ti">📱</span> Fully Responsive</div>
+    <div class="ticker-item"><span class="ti">🔍</span> SEO Optimised</div>
+    <div class="ticker-item"><span class="ti">📊</span> Google Analytics</div>
+    <div class="ticker-item"><span class="ti">💬</span> WhatsApp Chat</div>
+    <div class="ticker-item"><span class="ti">🔧</span> 1 Year Maintenance</div>
+  </div>
+</div>
+
+<!-- ── WHAT WE OFFER ── -->
+<section class="offer" id="offer">
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-title">Everything Your<br><span class="title-gold">Business Needs</span></h2>
+  <p class="section-sub">A complete website solution — built with React, designed to convert, delivered fast.</p>
+
+  <div class="offer-grid">
+    <div class="offer-card reveal">
+      <div class="oc-icon">⚛️</div>
+      <div class="oc-title">React Website Development</div>
+      <div class="oc-desc">Modern, high-performance websites built with React.js. Component-based architecture means fast load times, smooth animations and easy future updates.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="oc-icon">🎨</div>
+      <div class="oc-title">Custom UI/UX Design</div>
+      <div class="oc-desc">Unique, stunning designs crafted specifically for your brand. Orange & Gold signature aesthetic or your own custom palette — we design to impress.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="oc-icon">📱</div>
+      <div class="oc-title">Fully Responsive Layout</div>
+      <div class="oc-desc">Your website looks and works perfectly on every device — mobile phones, tablets and desktops. No compromises.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="oc-icon">🔍</div>
+      <div class="oc-title">SEO & Performance</div>
+      <div class="oc-desc">Built with search engines in mind. Clean code, fast loading, meta tags, schema markup, Google Analytics — everything to help you rank and grow.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="oc-icon">📞</div>
+      <div class="oc-title">Lead Generation Tools</div>
+      <div class="oc-desc">WhatsApp chat button, live chat widget, enquiry forms, Google Map, social media links — multiple channels to capture every potential customer.</div>
+    </div>
+    <div class="offer-card reveal">
+      <div class="oc-icon">🛡️</div>
+      <div class="oc-title">Hosting, SSL & Support</div>
+      <div class="oc-desc">We handle domain, hosting and SSL — all included. Plus 1 year of free maintenance and 24×7 dedicated support so you never worry about tech.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES LIST ── -->
+<section class="features" id="features">
+  <div class="features-header">
+    <div>
+      <div class="section-label">Full Feature List</div>
+      <h2 class="section-title">Everything<br><span class="title-gold">Included</span></h2>
+    </div>
+    <p class="section-sub">18 powerful features in every premium React package — no upsells, no hidden extras.</p>
+  </div>
+
+  <div class="feat-grid">
+    <div class="feat-item reveal"><div class="feat-num">01</div><div class="feat-icon">📄</div><div class="feat-body"><strong>20+ Premium Pages</strong><span>Professionally designed for conversion</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">02</div><div class="feat-icon">🖼️</div><div class="feat-body"><strong>Modern Image Slider</strong><span>Hero / banner — touch & swipe ready</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">03</div><div class="feat-icon">🎨</div><div class="feat-body"><strong>Attractive & Pro UI</strong><span>Orange & gold signature design language</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">04</div><div class="feat-icon">📱</div><div class="feat-body"><strong>Fully Mobile Responsive</strong><span>Mobile · tablet · desktop — all perfect</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">05</div><div class="feat-icon">✉️</div><div class="feat-body"><strong>Enquiry Form + Email</strong><span>Auto-email notification on every submission</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">06</div><div class="feat-icon">📧</div><div class="feat-body"><strong>5 Professional Email IDs</strong><span>name@yourdomain.com business emails</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">07</div><div class="feat-icon">📲</div><div class="feat-body"><strong>Social Media Integration</strong><span>Facebook · Instagram · LinkedIn</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">08</div><div class="feat-icon">💬</div><div class="feat-body"><strong>WhatsApp Chat Button</strong><span>Click to chat — instant leads from every page</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">09</div><div class="feat-icon">🗨️</div><div class="feat-body"><strong>Live Chat Support Box</strong><span>Real-time visitor conversation widget</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">10</div><div class="feat-icon">📷</div><div class="feat-body"><strong>Photo / Project Gallery</strong><span>Filterable gallery with lightbox viewer</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">11</div><div class="feat-icon">🗺️</div><div class="feat-body"><strong>Google Map Integration</strong><span>Embedded interactive location map</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">12</div><div class="feat-icon">🔍</div><div class="feat-body"><strong>SEO Friendly Structure</strong><span>Clean URLs · heading hierarchy · schema</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">13</div><div class="feat-icon">📈</div><div class="feat-body"><strong>Basic On-Page SEO</strong><span>Meta titles · descriptions · alt tags</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">14</div><div class="feat-icon">🚀</div><div class="feat-body"><strong>Fast Loading & Optimised</strong><span>Code split · lazy loaded · 90+ PageSpeed</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">15</div><div class="feat-icon">📊</div><div class="feat-body"><strong>Google Analytics</strong><span>Real-time visitor tracking & reporting</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">16</div><div class="feat-icon">🌐</div><div class="feat-body"><strong>Domain + Hosting + SSL</strong><span>1 year everything included — free</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">17</div><div class="feat-icon">🔧</div><div class="feat-body"><strong>1 Year Free Maintenance</strong><span>Bug fixes · updates · tech support</span></div></div>
+    <div class="feat-item reveal"><div class="feat-num">18</div><div class="feat-icon">🎧</div><div class="feat-body"><strong>24×7 Customer Support</strong><span>Call · WhatsApp · Email — always here</span></div></div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="process" id="process">
+  <div style="text-align:center;margin-bottom:.5rem">
+    <div class="section-label" style="justify-content:center;display:flex">How It Works</div>
+    <h2 class="section-title" style="text-align:center">Our <span class="title-gold">6-Step</span><br>Process</h2>
+    <p class="section-sub" style="margin:0 auto;text-align:center">From your first message to a live website — clear, transparent, fast.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="step-card reveal">
+      <div class="step-num">01</div>
+      <div class="step-title">Discovery Call</div>
+      <div class="step-desc">We understand your business, goals, target audience and brand identity in detail.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">02</div>
+      <div class="step-title">Design Mockup</div>
+      <div class="step-desc">Visual wireframe & full UI design — you review and approve before a single line of code is written.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">03</div>
+      <div class="step-title">Development</div>
+      <div class="step-desc">Full React development — all pages, features, integrations. Clean, production-grade code.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">04</div>
+      <div class="step-title">Content & SEO</div>
+      <div class="step-desc">Pages filled with your content. Meta tags, analytics, sitemap and schema all configured.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">05</div>
+      <div class="step-title">Testing & QA</div>
+      <div class="step-desc">Mobile, desktop, cross-browser testing — every element verified before going live.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-num">06</div>
+      <div class="step-title">Launch 🚀</div>
+      <div class="step-desc">We deploy, configure domain + SSL, and hand you full access with a training walkthrough.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INCLUDED ── -->
+<section class="included" id="included">
+  <div class="section-label">Zero Hidden Costs</div>
+  <h2 class="section-title">Everything <span class="title-gold">Included.</span><br>One Package.</h2>
+  <p class="section-sub">No surprise invoices. Every item below is included at no extra cost in your premium package.</p>
+
+  <div class="included-grid">
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">🌐</div>
+      <div class="inc-body">
+        <strong>Domain Registration (1 Year)</strong>
+        <span>Your brand's web address — registered and ready for 12 months.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">🗄️</div>
+      <div class="inc-body">
+        <strong>Web Hosting (1 Year)</strong>
+        <span>Fast, reliable cloud hosting — no monthly bills for a full year.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">🛡️</div>
+      <div class="inc-body">
+        <strong>SSL Certificate</strong>
+        <span>HTTPS green padlock — customer trust and Google ranking boost.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">📧</div>
+      <div class="inc-body">
+        <strong>5 Business Email IDs</strong>
+        <span>Professional name@yourdomain.com — looks credible, converts better.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">🔧</div>
+      <div class="inc-body">
+        <strong>1 Year Free Maintenance</strong>
+        <span>Bugs fixed, updates applied, site kept healthy — all free for 12 months.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+    <div class="inc-card reveal">
+      <div class="inc-icon-wrap">🎧</div>
+      <div class="inc-body">
+        <strong>24×7 Customer Support</strong>
+        <span>Call, WhatsApp or email — day or night, we respond fast.</span>
+      </div>
+      <div class="inc-check">✅</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="timeline">
+  <div class="section-label">Delivery</div>
+  <h2 class="section-title">Ready in <span class="title-gold">12–15 Days</span></h2>
+  <p class="section-sub">Every milestone is clear. You know exactly what happens on every day.</p>
+
+  <div class="tl-list">
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 1–2</div>
+      <div class="tl-title">Discovery & Planning</div>
+      <div class="tl-desc">We gather all details about your business, collect your content, logo and assets. Clear project scope agreed.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 3–4</div>
+      <div class="tl-title">Design Mockup & Approval</div>
+      <div class="tl-desc">Full UI wireframe and visual design delivered. You review, request changes, and give the green light before we code.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 5–10</div>
+      <div class="tl-title">Full React Development</div>
+      <div class="tl-desc">All 20+ pages built in React — slider, gallery, forms, WhatsApp, live chat, social links, map. Every feature coded and working.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 11–12</div>
+      <div class="tl-title">Content, SEO & Analytics</div>
+      <div class="tl-desc">Pages filled with your content. Meta tags, Google Analytics, sitemap, schema markup — all configured for search engines.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 13–14</div>
+      <div class="tl-title">Testing & Quality Assurance</div>
+      <div class="tl-desc">Cross-device and cross-browser testing. Speed optimisation. Every button, form and feature verified before launch.</div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-day">Day 15 🚀</div>
+      <div class="tl-title">Launch Day!</div>
+      <div class="tl-desc">Website deployed live. Domain + SSL configured. Full handover with admin access and a walkthrough training session.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONNECT ── -->
+<section class="connect" id="contact">
+  <div style="text-align:center;margin-bottom:.5rem">
+    <div class="section-label" style="justify-content:center;display:flex">Get In Touch</div>
+    <h2 class="section-title" style="text-align:center">Connect <span class="title-gold">Instantly</span></h2>
+    <p class="section-sub" style="margin:0 auto;text-align:center">Multiple ways to reach us — pick what's easiest for you.</p>
+  </div>
+
+  <div class="connect-grid">
+    <div class="conn-card reveal">
+      <div class="conn-icon">💬</div>
+      <div class="conn-title">WhatsApp Chat</div>
+      <div class="conn-desc">The fastest way to reach us. Send a message anytime — we typically reply within minutes, day or night.</div>
+      <a href="https://wa.me/917000000000" class="conn-btn">Open WhatsApp →</a>
+    </div>
+    <div class="conn-card reveal">
+      <div class="conn-icon">🗨️</div>
+      <div class="conn-title">Live Chat</div>
+      <div class="conn-desc">Chat with our team directly on this website. No phone calls needed — just type and we respond in real time.</div>
+      <a href="#" class="conn-btn">Start Chat →</a>
+    </div>
+    <div class="conn-card reveal">
+      <div class="conn-icon">✉️</div>
+      <div class="conn-title">Email / Contact Form</div>
+      <div class="conn-desc">Prefer email? Drop us a message with your requirements. We'll respond with a detailed quote within a few hours.</div>
+      <a href="mailto:hello@reactelevate.com" class="conn-btn">Send Email →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section class="whyus">
+  <div class="section-label">Why ReactElevate</div>
+  <h2 class="section-title">6 Reasons to<br><span class="title-gold">Choose Us</span></h2>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Lightning Fast Delivery</div>
+      <div class="why-desc">12–15 days from payment to live website. Faster than most agencies take to just reply to your initial enquiry.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Premium Quality Only</div>
+      <div class="why-desc">Every pixel crafted by hand. No generic templates. No shortcuts. A website that genuinely represents your brand.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">All-Inclusive — Zero Surprises</div>
+      <div class="why-desc">Domain, hosting, SSL, 5 emails, maintenance — all included. What we quote is what you pay. Nothing more.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🎧</div>
+      <div class="why-title">Always Available</div>
+      <div class="why-desc">24×7 support means you are never stuck alone. Any issue, any time — we're here, we respond fast, we fix it.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔧</div>
+      <div class="why-title">Long-Term Partnership</div>
+      <div class="why-desc">1 year free maintenance isn't just a promise — it's our commitment. We care about your success beyond launch day.</div>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">📈</div>
+      <div class="why-title">Built for Business Growth</div>
+      <div class="why-desc">Every feature — SEO, analytics, WhatsApp, forms — chosen specifically to generate more leads and grow your revenue.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="reveal">
+    <h2>Ready to<br><span class="title-gold">Launch?</span></h2>
+    <p>Start today. Your premium React website will be live in 12–15 days. Let's build something extraordinary.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/917000000000" class="btn-hero">💬 WhatsApp Us Now</a>
+      <a href="mailto:hello@reactelevate.com" class="btn-ghost">✉️ Send Email</a>
+    </div>
+    <div class="cta-contacts">
+      <div class="cta-contact-item"><span class="ci">👑</span> ReactElevate</div>
+      <div class="cta-contact-item"><span class="ci">🌐</span> reactelevate.com</div>
+      <div class="cta-contact-item"><span class="ci">📧</span> hello@reactelevate.com</div>
+      <div class="cta-contact-item"><span class="ci">🕐</span> 24×7 Available</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">
+        <a href="#" class="logo">
+          <div class="logo-crown">👑</div>
+          <div class="logo-text">ReactElevate</div>
+        </a>
+      </div>
+      <p class="footer-desc">Premium React website development — 20+ pages, modern UI/UX, 12–15 day delivery, domain + hosting + SSL + 1 year maintenance included.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#offer">React Development</a>
+      <a href="#offer">UI/UX Design</a>
+      <a href="#offer">SEO & Performance</a>
+      <a href="#offer">Lead Generation</a>
+      <a href="#offer">Hosting & SSL</a>
+    </div>
+    <div class="footer-col">
+      <h4>Features</h4>
+      <a href="#features">20+ Pages</a>
+      <a href="#features">WhatsApp Chat</a>
+      <a href="#features">Google Analytics</a>
+      <a href="#features">Business Emails</a>
+      <a href="#features">1 Year Support</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="https://wa.me/917000000000">💬 WhatsApp</a>
+      <a href="mailto:hello@reactelevate.com">✉️ Email Us</a>
+      <a href="#contact">🗨️ Live Chat</a>
+      <a href="#">📍 Google Map</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ReactElevate. Premium React Website Development. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#" class="social-icon">📘</a>
+      <a href="#" class="social-icon">📸</a>
+      <a href="#" class="social-icon">💼</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp float -->
+<a href="https://wa.me/917000000000" class="wa-btn" title="Chat on WhatsApp">💬</a>
+
+<script>
+// ── Custom cursor
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.transform=`translate(${mx-7}px,${my-7}px)`;
+});
+function animRing(){
+  rx+=(mx-rx-18)*.12;
+  ry+=(my-ry-18)*.12;
+  ring.style.transform=`translate(${rx}px,${ry}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.offer-card,.feat-item,.step-card,.inc-card,.conn-card,.why-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cursor.style.transform+=' scale(2)';
+    ring.style.transform+=' scale(1.5)';
+    ring.style.opacity='0.4';
+  });
+  el.addEventListener('mouseleave',()=>{
+    ring.style.opacity='0.7';
+  });
+});
+
+// ── Scroll reveal
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ── Nav active scroll
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    window.scrollY>50?'rgba(19,12,4,.97)':'rgba(19,12,4,.88)';
+});
+</script>
+</body>
+</html>
